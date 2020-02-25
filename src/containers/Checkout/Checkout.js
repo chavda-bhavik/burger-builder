@@ -4,7 +4,6 @@ import { Route, Redirect } from 'react-router-dom'
 import CheckoutSummary from './../../components/Order/CheckoutSummary/CheckoutSummary'
 import ContactData from './../../containers/Checkout/ContactData/ContactData'
 import { connect } from "react-redux";
-//import * as actions from '../../store/actions/index'
 
 class checkout extends Component {
     checkoutCancelled = () => {
@@ -41,9 +40,4 @@ const mapStateToProps = state => {
         purchased: state.order.purchased
     }
 }
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         onInitPurchase: () => dispatch(actions.purchaseInit())
-//     }
-// }
 export default connect(mapStateToProps)(checkout)
