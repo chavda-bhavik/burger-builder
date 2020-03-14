@@ -1,6 +1,4 @@
-import axios from 'axios'
 import * as actionTypes from './actionTypes'
-import keys from '../../keys'
 
 export const authStart = () => {
     return {
@@ -37,29 +35,11 @@ export const checkAuthTimeout = (expirationTime) => {
     }
 }
 export const auth = (email,password,isSignup) => {
-    return dispatch => {
-        dispatch(authStart())
-        const authData = {
-            email,
-            password,
-            returnSecureToken: true
-        }
-        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+keys.firebase_id
-        if(!isSignup) url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+keys.firebase_id
-
-        axios.post(url, authData)
-            .then( res => {
-                const expirationDate = new Date(new Date().getTime() + res.data.expiresIn * 1000)
-                //console.log(new Date().getTime(), res.data.expiresIn, expirationDate);
-                localStorage.setItem('token',res.data.idToken);
-                localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userId', res.data.localId);
-                dispatch(authSuccess(res.data))
-                dispatch(checkAuthTimeout(res.data.expiresIn))
-            })
-            .catch( err => {
-                dispatch(authFail(err.response.data.error))
-            })
+    return {
+        type: actionTypes.AUTH_USER,
+        email,
+        password,
+        isSignup
     }
 }
 export const setAuthRedirectPath = (path) => {
