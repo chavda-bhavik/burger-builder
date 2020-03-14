@@ -1,2 +1,6 @@
 node_modules
 src/keys.js
+build
+.firebase
+firebase.json
+.firebaserc
