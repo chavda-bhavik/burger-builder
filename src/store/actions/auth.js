@@ -21,20 +21,19 @@ export const authFail = (error) => {
     }
 }
 export const logout = () => {
-    // localStorage.removeItem('token')
-    // localStorage.removeItem('expirationDate')
-    // localStorage.removeItem('localId')
-    // localStorage.removeItem('userId')
     return {
         type: actionTypes.AUTH_INITIATE_LOGOUT
     }
 }
+export const logoutSucceed = () => {
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    }
+}
 export const checkAuthTimeout = (expirationTime) => {
-    console.log("CHECK AUTH TIMEOUT "+expirationTime)
-    return dispatch => {
-        setTimeout(() => {
-            dispatch(logout())
-        }, expirationTime*1000)
+    return {
+        type: actionTypes.AUTH_CHECK_TIMEOUT,
+        expirationTime: expirationTime
     }
 }
 export const auth = (email,password,isSignup) => {
