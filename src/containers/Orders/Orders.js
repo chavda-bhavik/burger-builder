@@ -13,7 +13,7 @@ class orders extends Component {
         loading: true
     }
     componentDidMount() {
-        console.log(this.props.userId, this.props.token)
+        //console.log(this.props.userId, this.props.token)
         this.props.onFetchOrders(this.props.token, this.props.userId);
     }
     render() {
