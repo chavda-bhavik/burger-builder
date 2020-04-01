@@ -13,7 +13,6 @@ export function* initPurchaseBurgerSaga(action) {
 }
 
 export function* initFetchOrdersSaga(action) {
-    console.log("asdf")
     yield put(actions.fetchOrdersStart())
     const queryParams = yield '?auth='+action.token+'&orderBy="userId"&equalTo="'+action.userId+'"'
     try {
