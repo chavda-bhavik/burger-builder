@@ -42,11 +42,13 @@ const auth = (props) => {
         }
     })
 
+    const { buildingBurger, onSetAuthRedirectPath, authRedirectPath } = props;
     useEffect(() => {
-        if (!props.buildingBurger.building && props.authRedirectPath === "/") {
-            props.onSetAuthRedirectPath()
+        if (!buildingBurger.building && authRedirectPath === "/") {
+            onSetAuthRedirectPath()
         }
-    }, [])
+    }, [buildingBurger, onSetAuthRedirectPath, authRedirectPath])
+    
     const switchAuthModeHandler = () => {
         setIsSignup(!isSignup);
     } 
